@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div style="height: 100vh;" class="bg-light rounded-3 col-md-3 col-4 col-lg-2 col-sm-4 p-0">
+                <div class="container-fluid p-0 pt-3 pb-0 d-flex justify-content-center align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi me-1 bi-person-workspace text-dark-emphasis" viewBox="0 0 16 16">
+                        <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                        <path
+                            d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z" />
+                    </svg>
+                    <a href="#" id="logo" class="text-uppercase text-decoration-none fw-semibold text-dark-emphasis">
+    user guideline
+</a>
+<div id="subtitle">microsoft outlook</div>
+
+                </div>
+                <div class="container-fluid py-0">
+                    <hr class="table-group-divider">
+                </div>
+                <ul class="container-fluid p-0">
+                    <li class="nav-link my-2 d-flex align-items-center">
+                        <a class=" rounded py-2 ps-sm-2 ps-0 d-flex d-sm-inline justify-content-center bg-dark-subtle w-100 h-100 text-decoration-none text-dark-emphasis"
+                            data-page="install" href="install.html">
+                            <img style="width: 25px; height: 25px;object-fit: contain;" class="me-2"
+                                src="assets/icons/icons8-microsoft-outlook.svg" alt="">
+                            <span class="d-none d-sm-inline">Install</span></a>
+                    </li>
+                    <li class="nav-link my-2 d-flex align-items-center">
+                        <a class="rounded py-2 ps-sm-2 ps-0 d-flex d-sm-inline justify-content-center w-100 h-100 text-decoration-none text-dark-emphasis"
+                            data-page="setup" href="setup.html">
+                            <img style="width: 25px; object-fit: contain; height: 25px;" class="me-2"
+                                src="assets/icons/setup.png" alt="">
+                            <span class="d-none d-sm-inline">SetUp</span></a>
+                    </li>
+                    <li class="nav-link my-2 d-flex align-items-center">
+                        <a class=" rounded py-2 ps-sm-2 ps-0 d-flex d-sm-inline justify-content-center w-100 h-100 text-decoration-none text-dark-emphasis"
+                            data-page="Configure" href="Configure.html">
+                            <img style="width: 25px; height: 25px; object-fit: contain;" class="me-2"
+                                src="assets/icons/icons8-gmail.svg" alt="">
+                            <span class="d-none d-sm-inline">Configure</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-8 col-md-9 col-lg-10 col-sm-8 p-0">
+                <main id="views" class="container-fluid bg-secondary-subtle rounded-3"
+                    style="height: 100vh; overflow-y: scroll;">
+
+                </main>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="assets/js/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="assets/js/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function () {$.ajax({
+                url:"install.html",
+                type: "GET",
+                success: function (data) {
+                    $('#views').html(data);
+                },
+                error: function () {
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "You clicked the button!",
+                        icon: "success"
+                    });
+                }
+            })
+        $('li a').click(function (e) {
+            e.preventDefault();
+            $('li a').removeClass('bg-dark-subtle');
+            $(this).addClass('bg-dark-subtle');
+            let page = $(this).data('page');
+            $('#views').html("Loading...");
+            $.ajax({
+                url: page + ".html",
+                type: "GET",
+                success: function (data) {
+                    $('#views').html(data);
+                },
+                error: function () {
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "You clicked the button!",
+                        icon: "success"
+                    });
+                }
+            })
+        })
+    })
+</script>
+
+</html>
